@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EGO CHALLENGE - PWA Icon Generator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #000;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+        }
+        .icon-generator {
+            max-width: 600px;
+            margin: 0 auto;
+            background: #1a1a1a;
+            padding: 30px;
+            border-radius: 10px;
+            border: 2px solid #ff4444;
+        }
+        canvas {
+            border: 2px solid #ff4444;
+            margin: 20px;
+        }
+        button {
+            background: #ff4444;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 10px;
+            font-weight: bold;
+        }
+        button:hover {
+            background: #cc0000;
+        }
+        .instructions {
+            text-align: left;
+            margin: 20px 0;
+            padding: 20px;
+            background: #2d2d2d;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="icon-generator">
+        <h1>EGO CHALLENGE PWA Icon Generator</h1>
+        <p>Generate PWA icons for your EGO CHALLENGE application</p>
+        
+        <canvas id="icon192" width="192" height="192"></canvas>
+        <canvas id="icon512" width="512" height="512"></canvas>
+        
+        <div>
+            <button onclick="generateIcons()">Generate Icons</button>
+            <button onclick="downloadIcons()">Download Icons</button>
+        </div>
+        
+        <div class="instructions">
+            <h3>Instructions:</h3>
+            <ol>
+                <li>Click "Generate Icons" to create the PWA icons</li>
+                <li>Click "Download Icons" to save them to your computer</li>
+                <li>Save the files as:
+                    <ul>
+                        <li><code>icon-192.png</code> (192x192)</li>
+                        <li><code>icon-512.png</code> (512x512)</li>
+                    </ul>
+                </li>
+                <li>Place both files in your ego-challenge directory</li>
+            </ol>
+        </div>
+    </div>
+
+    <script>
+        function generateIcons() {
+            // Generate 192x192 icon
+            const canvas192 = document.getElementById('icon192');
+            const ctx192 = canvas192.getContext('2d');
+            
+            // Background
+            ctx192.fillStyle = '#000000';
+            ctx192.fillRect(0, 0, 192, 192);
+            
+            // Red border
+            ctx192.strokeStyle = '#ff4444';
+            ctx192.lineWidth = 8;
+            ctx192.strokeRect(4, 4, 184, 184);
+            
+            // Text "EGO"
+            ctx192.fillStyle = '#ff4444';
+            ctx192.font = 'bold 48px Arial';
+            ctx192.textAlign = 'center';
+            ctx192.fillText('EGO', 96, 80);
+            
+            // Text "CHALLENGE"
+            ctx192.font = 'bold 24px Arial';
+            ctx192.fillText('CHALLENGE', 96, 120);
+            
+            // Fire icon
+            ctx192.font = '48px Arial';
+            ctx192.fillText('🔥', 96, 160);
+            
+            // Generate 512x512 icon
+            const canvas512 = document.getElementById('icon512');
+            const ctx512 = canvas512.getContext('2d');
+            
+            // Background
+            ctx512.fillStyle = '#000000';
+            ctx512.fillRect(0, 0, 512, 512);
+            
+            // Red border
+            ctx512.strokeStyle = '#ff4444';
+            ctx512.lineWidth = 20;
+            ctx512.strokeRect(10, 10, 492, 492);
+            
+            // Text "EGO"
+            ctx512.fillStyle = '#ff4444';
+            ctx512.font = 'bold 128px Arial';
+            ctx512.textAlign = 'center';
+            ctx512.fillText('EGO', 256, 200);
+            
+            // Text "CHALLENGE"
+            ctx512.font = 'bold 64px Arial';
+            ctx512.fillText('CHALLENGE', 256, 300);
+            
+            // Fire icon
+            ctx512.font = '128px Arial';
+            ctx512.fillText('🔥', 256, 420);
+        }
+        
+        function downloadIcons() {
+            // Download 192x192 icon
+            const canvas192 = document.getElementById('icon192');
+            const link192 = document.createElement('a');
+            link192.download = 'icon-192.png';
+            link192.href = canvas192.toDataURL();
+            link192.click();
+            
+            // Download 512x512 icon
+            const canvas512 = document.getElementById('icon512');
+            const link512 = document.createElement('a');
+            link512.download = 'icon-512.png';
+            link512.href = canvas512.toDataURL();
+            link512.click();
+        }
+        
+        // Generate icons on page load
+        window.onload = function() {
+            generateIcons();
+        };
+    </script>
+</body>
+</html>
