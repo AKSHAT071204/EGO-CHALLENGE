@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EGO CHALLENGE - 30-Day Habit Formation</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#000000">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="EGO CHALLENGE">
+    <link rel="apple-touch-icon" href="icon-192.png">
+</head>
+<body>
+    <!-- EGO CHALLENGE Landing Page -->
+    <div class="challenge-container" id="challengePage">
+        <!-- Animated Background -->
+        <div class="background-gradient"></div>
+        
+        <!-- Center Content -->
+        <div class="center-content">
+            <!-- Headline -->
+            <h1 class="headline">EGO CHALLENGE</h1>
+            
+            <!-- Subtitle -->
+            <p class="subtitle">"Do it only if you can, cause we know you can't."</p>
+            
+            <!-- Random Quote -->
+            <div class="quote-container">
+                <p class="quote" id="randomQuote">Loading...</p>
+                <button class="speak-btn" id="speakBtn" title="Listen to quote">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+                        <path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+                    </svg>
+                </button>
+            </div>
+            
+            <!-- Warning Text (appears after 3 seconds) -->
+            <p class="warning-text" id="warningText">If you skip this, you're only sabotaging your own career.</p>
+            
+            <!-- Enter Challenge Button (appears after 6 seconds) -->
+            <button class="enter-btn" id="enterBtn">Enter Challenge</button>
+        </div>
+    </div>
+
+    <!-- Login/Sign-up Modal -->
+    <div class="modal" id="loginModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Join the EGO CHALLENGE</h2>
+                <button class="close-btn" id="closeModal">&times;</button>
+            </div>
+            <form class="login-form" id="loginForm">
+                <div class="form-group">
+                    <label for="email">Email Address *</label>
+                    <input type="email" id="email" name="email" required>
+                    <span class="error-message" id="emailError"></span>
+                </div>
+                <div class="form-group">
+                    <label for="phone">Phone Number (Optional)</label>
+                    <input type="tel" id="phone" name="phone">
+                </div>
+                <button type="submit" class="start-btn">Start 30-Day Challenge</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Main Habit Tracker App (Hidden Initially) -->
+    <div class="app-container" id="habitTrackerApp" style="display: none;">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-content">
+                <h1 class="app-title">
+                    <i class="fas fa-fire"></i>
+                    EGO CHALLENGE
+                </h1>
+                <div class="progress-summary">
+                    <div class="current-day">
+                        Day <span id="currentDay">1</span> of 30
+                    </div>
+                    <div class="overall-progress">
+                        <div class="progress-bar">
+                            <div class="progress-fill" id="overallProgress"></div>
+                        </div>
+                        <span class="progress-text" id="progressText">0%</span>
+                    </div>
+                </div>
+                <button class="logout-btn" id="logoutBtn" title="Logout">
+                    <i class="fas fa-sign-out-alt"></i>
+                </button>
+            </div>
+        </header>
+
+        <!-- Navigation -->
+        <nav class="nav-tabs">
+            <button class="nav-tab active" data-tab="today">
+                <i class="fas fa-calendar-day"></i>
+                Today
+            </button>
+            <button class="nav-tab" data-tab="progress">
+                <i class="fas fa-chart-line"></i>
+                Progress
+            </button>
+            <button class="nav-tab" data-tab="calendar">
+                <i class="fas fa-calendar-alt"></i>
+                Calendar
+            </button>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Today Tab -->
+            <div class="tab-content active" id="today-tab">
+                <div class="day-header">
+                    <h2 id="dayTitle">Stabilize Routine - Day 1</h2>
+                    <div class="day-navigation">
+                        <button id="prevDay" class="nav-btn" disabled>
+                            <i class="fas fa-chevron-left"></i>
+                        </button>
+                        <span class="day-indicator">Day <span id="dayNumber">1</span></span>
+                        <button id="nextDay" class="nav-btn">
+                            <i class="fas fa-chevron-right"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="habits-section">
+                    <h3 class="section-title">
+                        <i class="fas fa-star"></i>
+                        Core Habits
+                    </h3>
+                    <div class="habits-list" id="coreHabits">
+                        <!-- Core habits will be populated by JavaScript -->
+                    </div>
+                </div>
+
+                <div class="upgrade-section">
+                    <h3 class="section-title">
+                        <i class="fas fa-arrow-up"></i>
+                        Upgrade Habit
+                    </h3>
+                    <div class="upgrade-habit" id="upgradeHabit">
+                        <!-- Upgrade habit will be populated by JavaScript -->
+                    </div>
+                </div>
+
+                <div class="ads-section" id="adsSection" style="display: none;">
+                    <h3 class="section-title">
+                        <i class="fas fa-bullhorn"></i>
+                        Additional Requirements
+                    </h3>
+                    <div class="ads-info">
+                        <span id="adsCount">0</span> additional requirement(s) today
+                    </div>
+                </div>
+
+                <div class="day-actions">
+                    <button id="completeDay" class="btn btn-primary">
+                        <i class="fas fa-check"></i>
+                        Complete Day
+                    </button>
+                    <button id="resetDay" class="btn btn-secondary">
+                        <i class="fas fa-undo"></i>
+                        Reset Day
+                    </button>
+                </div>
+            </div>
+
+            <!-- Progress Tab -->
+            <div class="tab-content" id="progress-tab">
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-fire"></i>
+                        </div>
+                        <div class="stat-content">
+                            <div class="stat-value" id="streakCount">0</div>
+                            <div class="stat-label">Day Streak</div>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-check-circle"></i>
+                        </div>
+                        <div class="stat-content">
+                            <div class="stat-value" id="completedHabits">0</div>
+                            <div class="stat-label">Habits Completed</div>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-percentage"></i>
+                        </div>
+                        <div class="stat-content">
+                            <div class="stat-value" id="completionRate">0%</div>
+                            <div class="stat-label">Completion Rate</div>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-calendar-check"></i>
+                        </div>
+                        <div class="stat-content">
+                            <div class="stat-value" id="daysCompleted">0</div>
+                            <div class="stat-label">Days Completed</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="progress-chart">
+                    <h3>Weekly Progress</h3>
+                    <div class="chart-container">
+                        <canvas id="progressChart"></canvas>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Calendar Tab -->
+            <div class="tab-content" id="calendar-tab">
+                <div class="calendar-header">
+                    <h3>30-Day Overview</h3>
+                    <div class="legend">
+                        <div class="legend-item">
+                            <div class="legend-color completed"></div>
+                            <span>Completed</span>
+                        </div>
+                        <div class="legend-item">
+                            <div class="legend-color partial"></div>
+                            <span>Partial</span>
+                        </div>
+                        <div class="legend-item">
+                            <div class="legend-color not-started"></div>
+                            <span>Not Started</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="calendar-grid" id="calendarGrid">
+                    <!-- Calendar will be populated by JavaScript -->
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Confirmation Modal -->
+    <div class="modal" id="confirmationModal">
+        <div class="modal-content">
+            <h3>Complete Day?</h3>
+            <p>Are you sure you want to mark this day as complete? This action cannot be undone.</p>
+            <div class="modal-actions">
+                <button id="confirmComplete" class="btn btn-primary">Yes, Complete</button>
+                <button id="cancelComplete" class="btn btn-secondary">Cancel</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Success Toast -->
+    <div class="toast" id="successToast">
+        <div class="toast-content">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                <polyline points="22,4 12,14.01 9,11.01"></polyline>
+            </svg>
+            <span>Challenge accepted! Welcome to the journey.</span>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

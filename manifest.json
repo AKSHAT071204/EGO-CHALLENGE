@@ -1,0 +1,29 @@
+{
+  "name": "EGO CHALLENGE - 30-Day Habit Formation",
+  "short_name": "EGO CHALLENGE",
+  "description": "Do it only if you can, cause we know you can't. 30-day habit formation challenge with dark theme.",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#000000",
+  "theme_color": "#ff4444",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": ["productivity", "motivation", "challenge", "health", "lifestyle"],
+  "lang": "en",
+  "dir": "ltr",
+  "scope": "./",
+  "id": "ego-challenge-30day"
+}
